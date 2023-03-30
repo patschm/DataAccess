@@ -17,7 +17,9 @@ internal class Program
     private static void TestInsert()
     {
         var optionsBuilder = new DbContextOptionsBuilder<ProductCatalogContext>();
-        optionsBuilder.UseSqlServer(connectionString);
+        optionsBuilder.UseSqlServer(connectionString, opts => {
+            opts.MaxBatchSize(64);
+        });
         //optionsBuilder.LogTo(s=>Console.WriteLine(s));
 
         ProductCatalogContext context = new ProductCatalogContext(optionsBuilder.Options);

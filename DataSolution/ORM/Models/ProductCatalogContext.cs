@@ -70,32 +70,13 @@ namespace ORM.Models
 
             modelBuilder.Entity<Product>(entity =>
             {
-                entity.ToTable("Products", "Core");
-
-                entity.HasIndex(e => e.BrandId, "IX_Products_BrandId");
-
-                entity.HasIndex(e => e.ProductGroupId, "IX_Products_ProductGroupId");
-
-                entity.Property(e => e.Image).HasMaxLength(1024);
-
-                entity.Property(e => e.Name).HasMaxLength(255);
-
                 entity.Property(e => e.Timestamp)
                     .IsRowVersion()
                     .IsConcurrencyToken();
-
-                entity.HasOne(d => d.Brand)
-                    .WithMany(p => p.Products)
-                    .HasForeignKey(d => d.BrandId);
-
-                entity.HasOne(d => d.ProductGroup)
-                    .WithMany(p => p.Products)
-                    .HasForeignKey(d => d.ProductGroupId);
-            });
+                });
 
             modelBuilder.Entity<ProductGroup>(entity =>
-            {
-                
+            {              
                 entity.Property(e => e.Timestamp)
                     .IsRowVersion()
                     .IsConcurrencyToken();

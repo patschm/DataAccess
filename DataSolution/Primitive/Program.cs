@@ -81,7 +81,7 @@ internal class Program
         SqlCommand command = new SqlCommand();
         command.Connection = connection;
 
-        command.CommandText = "SELECT * FROM Core.ProductGroups";
+        command.CommandText = "SELECT * FROM Core.ProductGroups;SELECT * FROm Products";
         return command;
     }
     static void TestConnection()
